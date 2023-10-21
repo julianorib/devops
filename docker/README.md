@@ -164,7 +164,7 @@ docker images ls
 
 Iniciar um novo container com a imagem "preparada" .
 ```
-docker run -d -p 8080:80 seuUsuario/projeto1
+docker run -d -p 8080:80 seuUsuario/projetoX
 ```
 
 ### Docker Registry
