@@ -2,6 +2,7 @@
 
 Sintaxe:
 
+```
 -i hosts.ini        - Especificar o arquivo com o Inventário de hosts
 grupo               - Especificar o Grupo dentro do Inventário de Hosts
 -u root             - Especificar o usuário que utilizar no destino
@@ -11,6 +12,7 @@ grupo               - Especificar o Grupo dentro do Inventário de Hosts
 -a "ls"             - Quando o módulo necessita de argumentos. 
 -b                  - Become Sudo - Se não for usuário root, mas deve executar com Elevação (sudo)
 -K                  - Solicitar a senha do usuário que tem permissão ao Sudo.
+```
 
 Modulo de ping: Teste conexão
 ```bash
