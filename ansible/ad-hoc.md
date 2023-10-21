@@ -33,7 +33,7 @@ Modulo User: Adicionar usuário
 ```bash
 ansible -i hosts.ini grupo -u root --private-key keys/chave -m user  -a 'name=usuarionovo password="senhacriptogravada"'
 ```
-Definir senha criptografada
+*Definir senha criptografada*
 ```
 mkpasswd --method=SHA-256
 ```
@@ -44,6 +44,7 @@ ansible -i hosts.ini grupo -u root --private-key keys/chave -m user  -a 'name=us
 ```
 
 Instalar Pacotes
+
 Derivados Debian:
 ```bash
 ansible -i hosts.ini grupo -u root --private-key keys/chave -m apt -a "name=zabbix-agent state=present"
@@ -59,6 +60,9 @@ ansible -i hosts.ini grupo -u root --private-key keys/chave -m dnf -a "name=zabb
 
 Documentação Completa:
 https://docs.ansible.com/
+
 https://docs.ansible.com/ansible/2.3/intro_inventory.html
+
 https://docs.ansible.com/ansible/2.8/user_guide/intro_adhoc.html
+
 https://www.youtube.com/watch?v=9Lx6bCs4nJo
