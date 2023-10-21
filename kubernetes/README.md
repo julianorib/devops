@@ -99,7 +99,7 @@ kubectl describe replicaset
 kubectl delete replicaset nomereplica
 ```
 
-## Deployment
+### Deployment
 
 https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 
