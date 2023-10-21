@@ -75,6 +75,7 @@ terraform destroy
 
 ## Estrutura
 Um projeto bem estruturado, contém os seguintes arquivos:
+```
 README.md
 main.tf
 variables.tf
@@ -82,6 +83,7 @@ terraform.tfvars (nao deve publicar)
 locals.tf
 outputs.tf
 modules/
+```
 
 ## Recursos
 Os recursos são criados de acordo com cada provider.
