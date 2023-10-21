@@ -7,8 +7,6 @@ https://www.youtube.com/playlist?list=PLf-O3X2-mxDn1VpyU2q3fuI6YYeIWp5rR
 
 ## Comandos
 
-![cmd](commands.jpeg)
-
 Ver informações sobre containers.
 ```
 docker ps
