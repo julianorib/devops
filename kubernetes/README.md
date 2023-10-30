@@ -197,6 +197,13 @@ kubectl apply -f manifesto.yaml -n nomeNameSpace
 ```
 Obs: É possível setar o namespace dentro do manifesto, no item "metadata".
 
+#### Comunicação entre Namespaces
+
+Em determinados casos, um service estará com mesmo nome em mais de um Namespace. Para acessar um service fora do namespace default pelo dns do k8s, deverá utilizar o nome completo.
+
+```
+nomeservice.namespace.svc.cluster.local
+```
 
 ### ConfigMap
 
