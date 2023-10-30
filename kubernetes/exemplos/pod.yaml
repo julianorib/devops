@@ -4,15 +4,11 @@ metadata:
   name: meupod
 spec: 
   containers:
-    - name:  nginx
-      image: nginx
+    - name:  php
+      image: julianorib/page-blue
 
 ## kubectl apply -f pod.yaml
-
 ## kubectl get pods
-
 ## kubectl describe pod meupod
-
 ## kubectl port-forward pod/meupod 8080:80
-
 ## kubectl delete pod meupod

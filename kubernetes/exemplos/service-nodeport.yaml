@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-service
+spec: 
+  selector:
+    app: php
+  ports:
+  - port: 80
+    targetPort: 80
+  type: NodePort
+
+## kubectl apply -f service-nodeport.yaml
+## kubectl get services
+
+## O service do tipo NodePort aceita conexão externa, porém em um range de Portas do Cluster Kubernetes.
+## Para acessar e testar, utilize o IP do NODE K8S.
+## O acesso interno, é via nome do serviço.
