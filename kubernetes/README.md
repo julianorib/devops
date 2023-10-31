@@ -11,25 +11,32 @@ https://kubernetes.io/pt-br/docs/home/
 
 ## Conceitos
 
- - Nó ou Worker
+ - Nó ou Worker:
+
 Cada Servidor de um Cluster
 
-- Cluster 
+- Cluster:
+
 Um conjunto de Nós que formam um Cluster
 
-- Control Plane
+- Control Plane:
+
 Os componentes do plano de controle tomam decisões globais sobre o cluster (por exemplo, agendamento), bem como detectam e respondem a eventos de cluster (por exemplo, iniciando um novo POD quando o campo de uma implantação não estiver satisfeito)
 
-- POD
+- POD:
+
 Um container ou um conjunto de Containers com a mesma função
 
-- kubeadm 
+- kubeadm:
+
 Tool para realizar o bootstrap do Cluster
 
-- kubelet
+- kubelet:
+
 tool que roda em todos os nodes gerenciando os papéis, iniciando pods, containers e mantendo-os saudáveis
 
-- kubectl
+- kubectl:
+
 tool para realizar a comunicação com o Cluster e executar todas as operações de orquestração.
 
 
