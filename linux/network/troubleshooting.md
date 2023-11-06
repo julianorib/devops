@@ -78,8 +78,8 @@ Exemplo de nslookup para o domínio WIKIPEDIA.ORG
 C:\> nslookup wikipedia.org
 ```
 ```
-Servidor:  MGFSRF001.unicoob.local
-Address:  10.209.4.10
+Servidor:  server1.contoso.com
+Address:  192.168.1.1
 
 Nao é resposta autoritativa:
 Nome:    wikipedia.org
@@ -108,38 +108,34 @@ Addresses:  2620:0:861:ed1a::1
 **Opções mais comuns:**
 Verificar informações de Responsável pelo domínio.
 ```
-C:\> nslookup -type=SOA sicoob.com.br
+C:\> nslookup -type=SOA uol.com.br
 ```
 ```
-Servidor:  MGFSRF001.unicoob.local
-Address:  10.209.4.10
+Servidor:  server1.contoso.com
+Address:  192.168.1.1
 
-Nao é resposta autoritativa:
-sicoob.com.br
-        primary name server = nameserver01.sicoob.com.br
-        responsible mail addr = suporte.sicoob.com.br
-        serial  = 2023083102
-        refresh = 60 (1 min)
-        retry   = 30 (30 secs)
-        expire  = 3600 (1 hour)
-        default TTL = 0 (0 secs)
-
-nameserver01.sicoob.com.br      internet address = 187.72.5.251
+UOL.COM.BR
+        primary name server = a10-dns-uolcsfe1.host.intranet
+        responsible mail addr = root.UOL.COM.BR
+        serial  = 2016053019
+        refresh = 7200 (2 hours)
+        retry   = 3600 (1 hour)
+        expire  = 432000 (5 days)
+        default TTL = 900 (15 mins)
 ```
 
 Verificar registros de Email (mx) do domínio.
 ```
-C:\> nslookup -type=MX sicoob.com.br
+C:\> nslookup -type=MX uol.com.br
 ```
 ```
-Servidor:  MGFSRF001.unicoob.local
-Address:  10.209.4.10
+Servidor:  server1.contoso.com
+Address:  192.168.1.1
 
 Nao é resposta autoritativa:
-sicoob.com.br   MX preference = 10, mail exchanger = sicoob-com-br.mail.protection.outlook.com
+UOL.COM.BR      MX preference = 10, mail exchanger = mx.UOL.COM.BR
 
-sicoob-com-br.mail.protection.outlook.com       internet address = 104.47.58.110
-sicoob-com-br.mail.protection.outlook.com       internet address = 104.47.70.110
+mx.UOL.COM.BR   internet address = 200.147.41.231
 ```
 
 Verificar informações dos Servidores de Nomes que podem atualizar registros no domínio.
@@ -147,34 +143,28 @@ Verificar informações dos Servidores de Nomes que podem atualizar registros no
 C:\> nslookup -type=NS sicoob.com.br
 ```
 ```
-Servidor:  MGFSRF001.unicoob.local
-Address:  10.209.4.10
+Servidor:  server1.contoso.com
+Address:  192.168.1.1
 
 Nao é resposta autoritativa:
-sicoob.com.br   nameserver = nameserver05.sicoob.com.br
-sicoob.com.br   nameserver = nameserver02.sicoob.com.br
-sicoob.com.br   nameserver = nameserver06.sicoob.com.br
-sicoob.com.br   nameserver = nameserver01.sicoob.com.br
-sicoob.com.br   nameserver = nameserver03.sicoob.com.br
-sicoob.com.br   nameserver = nameserver04.sicoob.com.br
+UOL.COM.BR      nameserver = borges.UOL.COM.BR
+UOL.COM.BR      nameserver = eliot.UOL.COM.BR
+UOL.COM.BR      nameserver = charles.UOL.COM.BR
 
-nameserver05.sicoob.com.br      internet address = 177.53.249.250
-nameserver02.sicoob.com.br      internet address = 177.53.251.250
-nameserver06.sicoob.com.br      internet address = 177.53.253.250
-nameserver01.sicoob.com.br      internet address = 187.72.5.251
-nameserver03.sicoob.com.br      internet address = 189.74.157.251
-nameserver04.sicoob.com.br      internet address = 187.4.128.190
+borges.UOL.COM.BR       internet address = 172.64.53.68
+eliot.UOL.COM.BR        internet address = 200.221.11.98
+charles.UOL.COM.BR      internet address = 172.64.52.59
 ```
 Verificar o hostname a partir de um IP
 ```
-C:\> nslookup -type=PTR 1.1.1.1
+C:\> nslookup -type=PTR 200.147.41.231
 ```
 ```
-Servidor:  MGFSRF001.unicoob.local
-Address:  10.209.4.10
+Servidor:  server1.contoso.com
+Address:  192.168.1.1
 
 Nao é resposta autoritativa:
-1.1.1.1.in-addr.arpa    name = one.one.one.one
+231.41.147.200.in-addr.arpa     name = 200-147-41-231.static.uol.com.br
 ```
 
 ### ip add
