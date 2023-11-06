@@ -22,13 +22,13 @@ Ver arquivos ocultos
 ls -la
 ```
 
-```bash
 Ver somente pastas ocultas:
+```bash
 ls -dl .*/
 ```
 
-```bash
 Contar arquivos em uma pasta:
+```bash
 ls -1 /var/named | wc -l
 ```
 
