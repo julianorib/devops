@@ -1,0 +1,89 @@
+########## Markdown ##########
+
+O Markdown é uma linguagem de marcação simples e fácil de usar que você pode usar para formatar praticamente qualquer documento.
+
+https://www.markdownguide.org/
+
+https://www.markdownguide.org/basic-syntax/
+
+
+
+########## Código ##########
+
+```
+codigo aqui
+```
+
+```bash
+codigo bash aqui
+```
+
+```powershell
+codigo powershell aqui
+```
+
+
+
+########## Negrito ##########
+
+** Texto em negrito aqui **
+
+
+
+########## Italico ##########
+
+* Texto em italico aqui *
+
+
+
+########## Link ##########
+
+[link](https://google.com)
+
+
+
+########## Imagem ##########
+
+![nomeimagem](caminho da imagem)
+
+
+
+########## Highlight ##########
+
+Nesta frase contém uma ==palavra importante==.
+
+
+
+########## Sumário em mesma página ##########
+
+- [Item 1](#item1)
+
+- [Item 2](#item2)
+
+- [Item 4](#item3)
+
+# Item 1 {#item1}
+
+# Item 2 {#item2}
+
+# Item 3 {#item3}
+
+
+
+########## Sumário em página diferente ##########
+
+- [Item 1](caminhoitem1.md)
+
+- [Item 2](caminhoitem2.md)
+
+- [Item 3](caminhoitem3.md)
+
+
+
+########## Tabela ##########
+
+| Coluna 1   | Coluna 2   |
+|------------|------------|
+| Item 1.1   | Item 1.2   |
+| Item 2.1   | Item 2.2   |
+
