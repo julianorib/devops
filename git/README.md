@@ -4,6 +4,19 @@ O Git é um sistema de controle de versão gratuito e de código aberto criado p
 
 ## Conceitos
 
+"Working Dir" é o diretório do sistema de arquivos onde o código está armazenado e o local onde você está atualmente desenvolvendo um novo recurso ou corrigindo bugs.
+
+**git init**
+
+"Index" é a área de preparo, é o local onde você armazena todos os arquivos que precisam ser confirmados. Isso geralmente é feito executando o comando.
+
+**git add**
+
+"HEAD" é apenas um ponteiro para qualquer confirmação ou ramificação que você tenha executado no momento. Por padrão, se você fez check-out da ramificação, o HEAD apontará para a ramificação. 
+
+**git checkout main**
+
+
 - Master
 Principal Linha do tempo de um código.
 
@@ -65,11 +78,11 @@ Defina um nome se quiser.
 Copie o conteudo publico da chave (arquivo.pub) para a configuração do seu usuário no GITHub, GITLab, etc.
 
 
-### Definir uma chave SSH para o repositorio
+### Definir uma chave SSH com nome alternativo para o repositorio
 Colocar a linha abaixo no arquivo .git/config do projeto.
 ```
 [core]
- sshCommand = "ssh -i ~/.ssh/id_rsa"
+ sshCommand = "ssh -i ~/.ssh/suachave"
 ```
 
 ### Ignorando arquivos
@@ -81,12 +94,6 @@ Dentro do arquivo especifique um arquivo ou alguma extensão de arquivo.
 ```
 git remote add origin https://github.com/nomedousuario/nomeprojeto.git
 git remote add origin git@github.com:usuario/projeto.git 
-```
-
-### Subir as alterações (commits) no Repositorio Remoto 
-```
-git push -u origin main (primeira vez)
-git push 
 ```
 
 ### Adicionando arquivos ao projeto
@@ -115,6 +122,12 @@ git log
 git log -p nomedoarquivo
 ```
 
+### Subir as alterações (commits) no Repositorio Remoto 
+```
+git push -u origin main (primeira vez)
+git push 
+```
+
 ### Resetando um commit (um estado antigo do arquivo)
 ```
 git checkout hashdocommit
@@ -132,6 +145,14 @@ git pull
 git push
 ```
 
+### Restaurar um arquivo a partir do repositório Remoto
+
+```
+git restore nomearquivo.txt
+git restore 
+```
+
+
 ### Fazer o download completo do repositorio.
 ```
 git clone git@github.com:usuario/projeto.git
@@ -139,6 +160,9 @@ git clone git@github.com:usuario/projeto.git
 
 ## Branches
 Linha do tempo atual / alternativas de um projeto
+
+Não é correto ficar fazendo commits direto na branch main.
+Tenha uma Branch de Desenvolvimento ou Correção e trabalhe nela.
 
 ```
 git branch *listar*
@@ -150,6 +174,12 @@ git branch -d nova_branch *apaga*
 
 ## Merge
 Junta as alterações de alternativas / linhas do tempo
+
+Quando é feito o push, é criado automaticamente um "Merge Request" (link) ou "Pull Request".
+Após testado e validado, preencher esta requisição, Aprovar e em seguida fazer o Merge.
+No repositório, é necessário definir os membros para Aprovarem o Request.
+
+
 ```
 git checkout main
 git merge nova_branch 
@@ -200,7 +230,13 @@ git log
 git log arquivo.txt
 git log --oneline *resumido*
 git log -n 2  *2 ultimas alterações*
+
+**git log --oneline -3**
+
 git log --graph *mostra as linhas de branchs*
 git log --graph --oneline
 git log --author ""
 ```
+
+
+
