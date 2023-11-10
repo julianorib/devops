@@ -7,4 +7,6 @@ Eu utilizo este repositório para colocar meus estudos resumidos relacionados a 
 - Docker
 - Kubernetes
 - Terraform
-- 
+- az cli
+- aws cli
+
