@@ -166,10 +166,10 @@ Tenha uma Branch de Desenvolvimento ou Correção e trabalhe nela.
 
 ```
 git branch *listar*
-git branch nova_branch *criar*
-git checkout nova_branch *altera*
+git branch dev-homol *criar*
+git checkout dev-homol *altera*
 git checkout -b nova_brach *cria uma nova e altera*
-git branch -d nova_branch *apaga*
+git branch -d dev-homol *apaga*
 ```
 
 ## Merge
@@ -179,18 +179,18 @@ Quando é feito o push, é criado automaticamente um "Merge Request" (link) ou "
 Após testado e validado, preencher esta requisição, Aprovar e em seguida fazer o Merge.
 No repositório, é necessário definir os membros para Aprovarem o Request.
 
-
+Trocar de volta para a Branch Main e fazer o Merge.
 ```
 git checkout main
-git merge nova_branch 
+git merge dev-homol 
 ```
 
 ## Criando uma nova Branch e Subindo no Repositorio
 ```
-git chekout -b nova_branch
+git chekout -b dev-homol
 git add novo-arquivo.txt
 git commit -m "novo-arquivo.txt"
-git push -u origin nova_branch
+git push -u origin dev-homol
 ```
 
 ## Rebase
@@ -201,7 +201,7 @@ Ela não mantem um historico correto dos Commits.
 
 ```
 git checkout main
-git rebase nova_branch
+git rebase dev-homol
 ```
 
 ## Cherry Pick
