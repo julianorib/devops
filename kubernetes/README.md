@@ -135,19 +135,6 @@ kubectl rollout undo deployment nomedeploy --to-revision=2
 kubectl scale deployment/nomedeploy --replicas 5
 ```
 
-### Registry Privado
-
-Criar um Secret para configurar o Registry Privado.
-
-```
-kubectl create secret docker-registry nomecontasecret --docker-server=server --docker-username=username --docker-password=xyazka --docker-email=email@inteiro.com
-```
-
-colocar no final do arquivo de manifesto:
-imagePullSecrets: 
-  - name: nomecontasecret
-
-
 ### Services
 
 https://kubernetes.io/docs/concepts/services-networking/service/
@@ -245,7 +232,6 @@ https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
 PersistentVolume
 PersistentVolumeClaim
 
-
 ## Gerenciamento de Recursos
 
 ### Resource Request e Resource Limits
@@ -275,7 +261,7 @@ kubectl top pod nomedopod
 
 https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 
-No Kubernetes, um HorizontalPodAutoscaler atualiza automaticamente um recurso de carga de trabalho com o objetivo de dimensionar automaticamente a carga de trabalho para atender à demanda.
+No Kubernete/s, um HorizontalPodAutoscaler atualiza automaticamente um recurso de carga de trabalho com o objetivo de dimensionar automaticamente a carga de trabalho para atender à demanda.
 
 O dimensionamento horizontal significa que a resposta ao aumento da carga é implantar mais cápsulas. Isso é diferente do dimensionamento vertical , que para o Kubernetes significaria atribuir mais recursos (por exemplo: memória ou CPU) aos pods que já estão em execução para a carga de trabalho.
 
@@ -286,3 +272,74 @@ A base é o Resources Request
 kubectl get hpa
 ```
 
+
+## Self Healing Pods
+
+Verificação de Integridade.
+
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+
+Basicamente, reinicia contêineres que falham, substitui contêineres, elimina contêineres que não respondem à verificação de integridade definida pelo usuário e não os anuncia aos clientes até que estejam prontos para servir.
+
+### Startup
+
+Serve para aplicações (containers) que demoram para Iniciar.
+Se ocorrer isso, o Liveness pode entender que o Container não está saudável e irá reiniciar, sendo que não tempo para Iniciar.
+Acaba gerando um loop de Reinicialização incorreto.
+
+example:
+```
+...
+spec:
+...
+  image: suaimagem
+  ...
+  startupProbe:
+    httpGet:
+      patch: /ready
+      port: 80
+      scheme: HTTP
+...
+```
+
+
+### Readiness
+
+Serve para verificar se está pronto para receber requisições.
+Em determinadas situações, pode estar processando alguma coisa e está respondendo ao Liveness, mas não está pronto para responder outras requisições.
+
+example:
+```
+...
+spec:
+...
+  image: suaimagem
+  ...
+  readinessProbe:
+    httpGet:
+      patch: /health
+      port: 80
+      scheme: HTTP
+    failureThreshold: 30
+    periodSeconds: 5
+...
+```
+
+### Liveness
+
+Serve para verificar a saúde do Container, Pod.
+
+example:
+```
+...
+spec:
+...
+  image: suaimagem
+  ...
+  livenessProbe:
+    httpGet:
+      patch: /health
+      port: 80
+      scheme: HTTP
+...
+```
