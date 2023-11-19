@@ -227,6 +227,10 @@ Um StorageClass fornece uma maneira para os administradores descreverem as "clas
 Kubernetes as a Service normalmente tem diversas opções de StorageClass (AWS, Azure, etc)
 Para utilizar localmente, o ideal é utilizar um NFS.
 
+https://www.youtube.com/watch?v=3BjczAl-bd4
+
+https://www.youtube.com/watch?v=fADm0DGgEJw
+
 https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
 
 PersistentVolume
@@ -241,27 +245,37 @@ Request é o mínimo que o POD precisa para ser executado.
 Limits é o máximo que o POD pode usar no Cluster.
 
 ```
-memory: 
-cpu:
+...
+ resources: 
+    requests:
+      memory: "32Mi"
+      cpu: "100m"
+    limits:
+      memory: "32Mi"
+      cpu: "100m"
+...
 ```
 
 No CPU, 
 100m significa 10% do uso de 1 core.
 1000m significa 100% de uso de 1 core.
 
-```
-kube metrics server
-```
+Para conseguir monitorar os Recursos, precisa do Kube Metrics Server instalado/configurado.
+
+https://github.com/kubernetes-sigs/metrics-server
+
 
 #### Comandos:
+```
 kubectl top pod nomedopod
-
+kubectl top pods
+```
 
 ### HPA - Horizontal Pods Autoscaling
 
 https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 
-No Kubernete/s, um HorizontalPodAutoscaler atualiza automaticamente um recurso de carga de trabalho com o objetivo de dimensionar automaticamente a carga de trabalho para atender à demanda.
+No Kubernetes, um HorizontalPodAutoscaler atualiza automaticamente um recurso de carga de trabalho com o objetivo de dimensionar automaticamente a carga de trabalho para atender à demanda.
 
 O dimensionamento horizontal significa que a resposta ao aumento da carga é implantar mais cápsulas. Isso é diferente do dimensionamento vertical , que para o Kubernetes significaria atribuir mais recursos (por exemplo: memória ou CPU) aos pods que já estão em execução para a carga de trabalho.
 
@@ -271,6 +285,38 @@ A base é o Resources Request
 ```
 kubectl get hpa
 ```
+
+### QoS Class:
+
+https://kubernetes.io/pt-br/docs/tasks/configure-pod-container/quality-service-pod/
+
+O Kubernetes usa classes QoS para tomar decisões sobre agendamento e despejo de Pods.
+Basicamente, um POD que não tenha configuração de recursos (besteffort) será o primeiro a ser despejado, caso o cluster esteja precisando de recursos.
+
+- BestEffort
+  - Para que um Pod receba uma classe de QoS BestEffort, os contêineres no pod não devem ter quaisquer requisitos ou limites de CPU ou memória.
+
+- Burstable
+  - Pelo menos um contêiner no Pod tem um requisito ou limite de memória ou CPU.
+
+- Guaranteed
+  - Todo contêiner no Pod deve ter um limite de memória e um requisito de memória.
+  - Para cada contêiner no Pod, o limite de memória deve ser igual ao requisito de memória.
+  - Todo contêiner no Pod deve ter um limite de CPU e um requisito de CPU.
+  - Para cada contêiner no Pod, o limite de CPU deve ser igual ao requisito de CPU.
+
+#### Comandos:
+
+```
+kubectl describe pods | grep QoS
+```
+
+### Limit Range
+
+https://kubernetes.io/docs/concepts/policy/limit-range/
+
+Por padrão, os cointêineres são executados com recursos computacionais ilimitados em um cluster Kubernetes. Com cotas de recursos, os administradores de cluster podem restringir o consumo e a criação de recursos baseado no namespace, containers, pod, volumes.
+
 
 
 ## Self Healing Pods
@@ -343,3 +389,17 @@ spec:
       scheme: HTTP
 ...
 ```
+
+## Life Cicle
+
+- SIGTERM
+Forma mais comum para encerramento de um processo/ container.
+
+- SIGKILL
+Forma bruta para encerramento de um processo/ container.
+Como se fosse um KILL -9.
+
+- Post Start
+
+- Pré Stop
+
