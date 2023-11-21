@@ -121,6 +121,17 @@ systemctl enable nfs-server
 systemctl restart nfs-server
 ```
 
+Deve-se instalar o nfs nos Servidores que serão os clientes.
+```
+yum install nfs-utils
+```
+
+Para testar se está liberado a comunicação:
+```
+showmount -e Ip-Nfs-Server
+```
+
+
 #### Configuração Kubernetes
 
 Requisito: \
