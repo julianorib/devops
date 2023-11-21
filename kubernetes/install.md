@@ -86,19 +86,61 @@ Este é um Componente do Cluster para Criar um Balanceador de Carga em um Cluste
 https://metallb.universe.tf/installation/
 
 
-### StorageClass NFS
-
-Este é um Componente do Cluster para Criar Classes de Armazenamento em um Cluster Local.
+### Criar um Storage Class do tipo NFS em um Cluster Kubernetes local.
 
 https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
 
-Resumo:
-Adicionar um Repositório do Helm.
+#### Configuração Servidor NFS
 
-Executar a instalação com o comando + argumentos
+Instalar um Servidor de NFS 
 ```
-helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner     --set nfs.server=10.209.9.23     --set nfs.path=/nfs/kubernetes --set storageClass.reclaimPolicy=Retain -n nfs-provisioner --create-namespace
+yum install nfs-utils
 ```
+
+Criar uma pasta para compartilhar
+```
+mkdir /nfs
+```
+
+Ajustar permissões para a pasta criada.
+```
+chmod -R 777 /nfs
+
+Criar as regras que definem quem poderá acessar este compartilhamento
+```
+vim /etc/exports
+```
+/nfs IpHost01(rw,sync,no_subtree_check,no_root_squash)
+/nfs IpHost02(rw,sync,no_subtree_check,no_root_squash)
+/nfs IpHost03(rw,sync,no_subtree_check,no_root_squash)
+```
+
+Reiniciar e Ativar o Serviço NFS-Server
+```
+systemctl enable nfs-server
+systemctl restart nfs-server
+```
+
+#### Configuração Kubernetes
+
+Requisito: \
+Tenha o helm instalado.
+
+Adicionar o repositório do nfs-subdir-external-provisioner
+```
+$ helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+```
+
+Instalar e setar as configurações. \
+Atenção: Altere os valores conforme necessário.
+```
+$ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
+    --set nfs.server=192.168.1.5 \
+    --set nfs.path=/nfs \
+    --set storageClass.reclaimPolicy=Retain
+    --create-namespace -n nfs-provisioner
+```
+
 
 ### Ingress Controller
 
