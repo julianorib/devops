@@ -71,6 +71,11 @@ git config --local user.email "seuemail@dominio.com"
 git config --local user.name "seu nome"
 ```
 
+### Se der erro de SSL 
+```
+git config --global http.sslVerify false
+```
+
 ### Gerando uma chave SSH para conectar com o Git
 ssh-keygen -t rsa 
 
