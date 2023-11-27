@@ -403,3 +403,33 @@ Como se fosse um KILL -9.
 
 - Pré Stop
 
+
+## StatefulSet
+
+https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
+
+O StatefulSet é semelhante ao Deployment, mas cria Containers de forma ordenada e em sequência.
+Ele é mais utilizando quando há necessidade de:
+- Identificadores de Rede exclusivos
+- Armazenamento persistente (com Storage Class)
+- Implantação ordenada
+
+Você pode utilizar o endereço DNS de um POD.
+```
+nomedoPod.aplicacaoStatefulSet.default.svc.cluster.local
+```
+
+## DaemonSet
+
+https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+
+O DaemonSet garante que todos os nós (NODE) executem uma cópia de um Pod.
+É bem utilizado para Pods do tipo de coleta de Logs, métricas, etc.
+
+
+## Job e CronJob
+
+https://kubernetes.io/docs/concepts/workloads/controllers/job/
+
+https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
+

@@ -146,9 +146,9 @@ Instalar e setar as configurações. \
 Atenção: Altere os valores conforme necessário.
 ```
 $ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
-    --set nfs.server=192.168.1.5 \
-    --set nfs.path=/nfs \
-    --set storageClass.reclaimPolicy=Retain
+    --set nfs.server=192.168.15.8 \
+    --set nfs.path=/home/juliano/nfs \
+    --set storageClass.reclaimPolicy=Retain \
     --create-namespace -n nfs-provisioner
 ```
 
