@@ -433,3 +433,116 @@ https://kubernetes.io/docs/concepts/workloads/controllers/job/
 
 https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
 
+
+## Gerenciando distribuição dos Pods
+
+https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+
+Há algumas circunstâncias em que você pode querer controlar em qual nó o pod será implantado, por exemplo, para garantir que um pod termine em um nó com um SSD conectado a ele ou para colocar pods de dois serviços diferentes que comunicar muito na mesma zona de disponibilidade.
+
+### Node Selector
+
+Para setar um POD em um Nó (NODE) especifico.
+Para isso, é necessário colocar uma Label no NODE e no POD.
+Se o NODE não tiver a Label, o POD fica pendente e não consegue ser criado.
+
+```
+kubectl label node nomedonode label:valor
+```
+
+Colocar no Deployment a Label:
+
+```
+...
+spec:
+  nodeSelector:
+    label: valor
+```
+
+Remover uma Label do NODE:
+```
+kubectl label node nomedonode label-
+```
+
+### Node Affinity
+
+
+```
+kubectl label node nomedonode1 prioridade: 1
+kubectl label node nomedonode2 prioridade: 2
+```
+
+Funciona semelhante ao Node Selector, porém é possível criar regras para execução em outros NODES.
+As regras podem ser com Operadores:
+
+- In
+- NotIn
+- Exists
+- DoesNotExist
+- Gt (Valores inteiros)
+- Lt (Valores inteiros)
+
+Neste exemplo abaixo, a execução ainda é limitada a um só NODE.
+```
+...
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: prioridade
+            operator: In
+            values:
+            - "1"
+```
+
+Neste exemplo abaixo, a execução poderá ser feita em 2 NODES ou mais que tenham as Labels Prioridade 1 e 2 .
+```
+...
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: prioridade
+            operator: In
+            values:
+            - "1"
+            - "2"
+```
+
+Nos exemplos acima, ainda fica sendo obrigatório a condição que foi definida.
+Se não houver mais recursos no NODE, algumas replicas dos PODs poderão ficar pendentes.
+Para contornar isto, há uma outra opção de "Preferência". 
+Significa que irá preferir criar os PODs em na regra que criou, mas se não tiver todos os recursos no NODE,
+Poderá criar mais Replicas em outros NODES.
+
+
+```
+...
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: prioridade
+            operator: In
+            values:
+            - "1"
+```
+
+Também é possível combinar as regras com condições obrigatórias e preferências.
+
+### PodAffinity
+
+Também é possível criar regras para Agendar um POD em um mesmo NODE que outro POD.
+Os 2 serão executados juntos.
+
+### PodAntiAffinity
+
+Outra opção são regras para ser executados em outro NODE.
+De acordo com as regras (critérios) definidos.
