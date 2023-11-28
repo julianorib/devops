@@ -546,3 +546,39 @@ Os 2 serão executados juntos.
 
 Outra opção são regras para ser executados em outro NODE.
 De acordo com as regras (critérios) definidos.
+
+
+### Taints and Tolerations
+
+https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+
+Aplicando uma Tag ao NODE, com opção de NoSchedule, este não irá mais permitir que se agende PODs neste NODE.
+
+```
+kubectl taint nodes nomeDoNode chave=valor:NoSchedule
+```
+
+Aplicando uma Tag ao NODE, com uma opção de NoExecute, todos os PODs que estiverem sendo executados no NODE serão removidos.
+```
+kubectl taint nodes nomeDoNode chave=valor:NoExecute
+```
+
+Com a opção de PreferNoSchedule, ainda será permitido agendamento no NODE, mas com menos preferência.
+```
+kubectl taint nodes nomeDoNode chave=valor:PreferNoSchedule
+```
+
+Para remover uma Tag, basta colocar um sinal de - no final.
+
+```
+
+Tolerância de um Deployment para uma Chave/Valor e Opção.
+Com isso, mesmo que o NODE tenha uma Taint, o POD continuará a execução ou poderá ser agendado.
+...
+spec:
+  tolerations:
+    - key: "chave"
+      operator: "Equal"
+      value: "valor"
+      effect: "NoExecute"
+```
