@@ -1,4 +1,4 @@
-# Gitlab
+nom# Gitlab
 
 Para criar uma pipeline CI/CD no Gitlab, você precisa ter uma conta e um projeto. Em seguida, deve-se criar um arquivo no raiz do seu projeto, chamado:
 
@@ -32,6 +32,7 @@ Docker Build:
     script:
       - docker build -t $VAR_REPO/nomedaimagem:$CI_PIPELINE_ID .
       - docker build -t $VAR_REPO/nomedaimagem:latest .
+      - docker push $VAR_REPO/nomedaimage:$CI_PIPELINE_ID
     only:
       - main            # Referenciando que só irá executar na Branch main
 
