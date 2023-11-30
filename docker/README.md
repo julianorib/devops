@@ -55,7 +55,7 @@ Executar comandos no Host apontando para o Container.
 docker exec IDcontainer comando
 docker exec IDcontainer ps -ef
 docker exec IDcontainer systemctl start nginx
-docker exet -it IDcontainer bash
+docker exec -it IDcontainer bash
 ```
 Acessar novamente o Container em execução:
 ```
