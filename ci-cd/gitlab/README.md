@@ -1,4 +1,4 @@
-nom# Gitlab
+# Gitlab
 
 Para criar uma pipeline CI/CD no Gitlab, você precisa ter uma conta e um projeto. Em seguida, deve-se criar um arquivo no raiz do seu projeto, chamado:
 
