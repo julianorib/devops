@@ -10,7 +10,7 @@ A estrutura de um pipeline no Gitlab é bem simples.
 
 .gitlab-ci.yml
 ```
-stages
+stages:
     - test
     - build
     - deploy
