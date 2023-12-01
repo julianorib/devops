@@ -3,12 +3,12 @@
 Para criar uma pipeline CI/CD no Gitlab, você precisa ter uma conta e um projeto. Em seguida, deve-se criar um arquivo no raiz do seu projeto, chamado:
 
 ```
-.gitlab-ci.yaml
+.gitlab-ci.yml
 ```
 
 A estrutura de um pipeline no Gitlab é bem simples.
 
-.gitlab-ci.yaml.example
+.gitlab-ci.yml
 ```
 stages
     - test
