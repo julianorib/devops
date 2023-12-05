@@ -68,7 +68,6 @@ https://kubernetes.io/docs/concepts/overview/components/
 - CKD
 
 
-
 ## Comandos mais usados
 
 Configurar uma Variável de ambiente com dados do config para conexão com o Cluster.
@@ -81,3 +80,13 @@ https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
 
+
+## Padrão de manifesto
+
+```
+apiVersion:
+kind:
+metadata:
+  name: 
+spec:
+```
