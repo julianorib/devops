@@ -175,3 +175,24 @@ Aplicar o manifesto.
 ```
 kubectl apply -f deploy.yaml
 ```
+
+### Traefik
+
+O Traefik é um Proxy (Edge Router) para ser utilizado como Ingress Controller.
+
+https://doc.traefik.io/traefik/getting-started/install-traefik/
+
+
+Para Instalar é bem simples:
+
+```
+helm repo add traefik https://traefik.github.io/charts
+```
+
+Se quiser visualizar os Values para modificar alguma coisa.
+```
+helm show values traefik/traefik > traefik.yaml
+```
+```
+helm upgrade --install traefik traefik/traefik --create-namespace -n traefik
+```
