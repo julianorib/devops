@@ -62,7 +62,7 @@ kubeadm init --ignore-preflight-errors=NumCPU 	--control-plane-endpoint "144.22.
 
 ### Node
 
-Copiar os códigos do ControlPlane para incluir os Nodes ao Cluster.
+Copiar o TOKEN para incluir os Nodes ao Cluster.
 
 
 ### CNI (Container Network Interface)
@@ -78,6 +78,11 @@ https://github.com/flannel-io/flannel
 kubectl get pods --all-namespaces
 kubectl get pods
 ```
+
+### Reset
+
+kubeadm reset -f && rm -rf /etc/cni/net.d && iptables -F && rm -rf $HOME/.kube/config
+
 
 ### MetalLB (load balancer)
 
@@ -124,6 +129,7 @@ systemctl restart nfs-server
 Deve-se instalar o nfs nos Servidores que serão os clientes.
 ```
 yum install nfs-utils
+yum install nfs-common
 ```
 
 Para testar se está liberado a comunicação:

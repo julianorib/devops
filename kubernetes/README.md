@@ -69,3 +69,15 @@ https://kubernetes.io/docs/concepts/overview/components/
 
 
 
+## Comandos mais usados
+
+Configurar uma Variável de ambiente com dados do config para conexão com o Cluster.
+```
+export KUBECONFIG="${KUBECONFIG}:./config"
+```
+
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+
+https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
+
