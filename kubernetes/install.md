@@ -79,23 +79,23 @@ kubectl get pods --all-namespaces
 kubectl get pods
 ```
 
-### Reset
+## Cluster Reset
 
 kubeadm reset -f && rm -rf /etc/cni/net.d && iptables -F && rm -rf $HOME/.kube/config
 
 
-### MetalLB (load balancer)
+# MetalLB (load balancer)
 
 Este é um Componente do Cluster para Criar um Balanceador de Carga em um Cluster Local.
 
 https://metallb.universe.tf/installation/
 
 
-### Criar um Storage Class do tipo NFS em um Cluster Kubernetes local.
+# Criar um Storage Class do tipo NFS em um Cluster Kubernetes local.
 
 https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
 
-#### Configuração Servidor NFS
+## Configuração Servidor NFS
 
 Instalar um Servidor de NFS 
 ```
@@ -138,7 +138,7 @@ showmount -e Ip-Nfs-Server
 ```
 
 
-#### Configuração Kubernetes
+## Configuração Kubernetes
 
 Requisito: \
 Tenha o helm instalado.
@@ -159,7 +159,7 @@ $ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/n
 ```
 
 
-### Ingress Controller
+# Ingress Controller
 
 Este é um Componente do Cluster para Criar um Proxy para expor diversos Serviços em uma mesma Porta, através de Subdomínio ou Path.
 
@@ -176,7 +176,7 @@ Aplicar o manifesto.
 kubectl apply -f deploy.yaml
 ```
 
-### Traefik
+# Traefik
 
 O Traefik é um Proxy (Edge Router) para ser utilizado como Ingress Controller.
 
@@ -195,4 +195,26 @@ helm show values traefik/traefik > traefik.yaml
 ```
 ```
 helm upgrade --install traefik traefik/traefik --create-namespace -n traefik
+```
+
+# Metrics Server
+
+https://github.com/kubernetes-sigs/metrics-server
+
+O Metrics Server coleta Metricas de CPU e Memória dos Containers (Pods) do Kubernetes.
+
+Para instalar, o ideal é fazer download do arquivo de manifesto e acrescentar uma linha de argumento no Deployment.
+```
+--kubelet-insecure-tls
+```
+
+Em seguida, aplique o Manifesto.
+
+```
+kubectl apply -f metrics-server.yaml
+```
+
+Para visualizar o consumo de CPU e Memória de um POD:
+```
+kubectl top pod nomedopod
 ```
