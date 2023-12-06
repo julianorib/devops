@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-ingressroute
+  namespace: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+  - kind: Rule
+#   match: PathPrefix(`/dashboard`)
+    match: Host(`k8s.unicoob.local`)
+    services:
+    - name: api@internal
+      kind: TraefikService
+
