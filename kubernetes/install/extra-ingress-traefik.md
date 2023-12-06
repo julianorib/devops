@@ -31,18 +31,23 @@ Registre o IP deste serviço em um DNS público ou privado.
 ## Certificado SSL Traefik
 
 É possível utilizar um SSL para este DNS (domínio) registrado.\
+Se for público, ok.\
 Se for privado (active directory), gere um certificado assinado com a CA do AD.
 
 Será necessário os arquivos:
 - certificado.crt
 - chave.key
 
-Crie uma secret com estes arquivos:
+Deverá analisar a estratégia de DNS.\
+- Se for utilizar servico.dominio.com, e o certificado for wildcard, poderá criar um secret apenas no namespace default e apontar a "secret" no "ingressroute websecure" de cada aplicação.
+- Se for utilizar dominio.com/ path, poderá criar um secret apenas no namespace default e apontar a "secret" no "ingressroute websecure" de cada aplicação.
+
+Crie uma secret com os arquivos de certificado:
 ```
-kubectl create secret generic dominio-secret --from-file=tls.crt=cert-dominio.crt --from-file=tls.key=cert-dominio.key -n traefik
+kubectl create secret generic dominio-secret --from-file=tls.crt=cert-dominio.crt --from-file=tls.key=cert-dominio.key 
 ```
 
-Crie um ingressroute com o entryPoint "websecure" e o parametro abaixo na chave "spec":
+Em cada aplicação, Crie um ingressroute com o entryPoint "websecure" e o parametro abaixo na chave "spec":
 ```
   tls:
     secretName: dominio-secret
