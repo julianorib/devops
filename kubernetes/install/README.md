@@ -46,7 +46,9 @@ Especificar o nome do Node
 
 --pod-network-cidr string
 Especifique o intervalo de endereços IP para a rede do pod. Se definido, o plano de controle alocará automaticamente CIDRs para cada nó.
-Melhor especificar 10.244.0.0/16
+Em teoria este é o padrão 10.244.0.0/16.\
+Mas pode ser utilizado outro. Ex: 10.135.0.0/16.
+*Fiz testes com CIDR diferente de /16 e não funcionou. Provavelmente algum problema no Flannel sem correção ainda.*
 
 --service-cidr string    Default: "10.96.0.0/12"
 Use um intervalo alternativo de endereço IP para VIPs de serviço.
@@ -70,6 +72,9 @@ Copiar o TOKEN para incluir os Nodes ao Cluster.
 
 https://github.com/flannel-io/flannel
 
+*Observação*:\
+O flannel está com o --pod-network-cidr setado fixamente como 10.244.0.0/16.\
+Se você especificou outro na criação do cluster, tem que baixar o arquivo e alterar manualmente.
 
 ### Validar configurações
 
