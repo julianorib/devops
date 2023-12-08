@@ -105,3 +105,35 @@ helm install meuapp . --set nginx.credentials.username=fulano --dry-run --debug 
 helm install meuapp .
 helm install meuapp . --wait
 ```
+
+Criando um Secret buscando do Values e deixando em base64 e entre aspas.
+```
+{{ .Values.app.credentials.username | b64enc | quote }}
+{{ .Values.app.credentials.username | b64enc | quote }}
+```
+
+### If Else
+```
+{{- if empty .Values.example }}
+faça essa parte do manifesto
+{{- else }}
+faça essa parte do manifesto
+{{- end }}
+```
+
+### Range (Loop)
+```
+{{- range .Values.example.ingress }}
+- host: {{ . }}
+  service: {{ $.Release.Name }}-service  ## se não colocar o $, ele busca o item do array.
+{{- end}}
+```
+
+Declarando no Values:
+```
+example:
+  ingress:
+  - site1.com
+  - site2.com
+```
+
