@@ -44,7 +44,7 @@ Deverá analisar a estratégia de DNS.\
 
 Crie uma secret com os arquivos de certificado:
 ```
-kubectl create secret generic dominio-secret --from-file=tls.crt=cert-dominio.crt --from-file=tls.key=cert-dominio.key 
+kubectl create secret tls unicoob-secret --cert=certificado.crt --key=certificado-key.pem
 ```
 
 Em cada aplicação, Crie um ingressroute com o entryPoint "websecure" e o parametro abaixo na chave "spec":
