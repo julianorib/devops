@@ -137,3 +137,23 @@ example:
   - site2.com
 ```
 
+## Dependências de Chart
+
+É possível utilizar um outro Chart como dependência.
+Exemplo: Mongodb.
+
+Para isso, deve-se especificar a depenência no arquivo chart.yaml.
+```
+dependencies:
+- name: mongodb
+  version: "9.2.5"
+  repository: "https://charts.bitnami.com/bitnami"
+```
+
+Deve-se atentar para os nomes dos values e alterar no seu projeto.
+
+Por fim, deve-se utilizar o comando abaixo para aplicar:
+```
+helm dependency build
+helm upgrade projeto . --dry-run --debug
+```
