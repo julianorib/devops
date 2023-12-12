@@ -86,3 +86,9 @@ kubectl get pods
 ## Cluster Reset
 
 kubeadm reset -f && rm -rf /etc/cni/net.d && iptables -F && rm -rf $HOME/.kube/config
+
+
+## Extras
+
+https://artifacthub.io/
+
