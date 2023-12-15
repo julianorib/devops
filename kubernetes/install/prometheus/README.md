@@ -19,7 +19,7 @@ kubectl create namespace monitoring
 ```
 ```
 helm install [RELEASE_NAME] prometheus-community/kube-prometheus-stack -n monitoring
-helm update --install monitoring prometheus-community/kube-prometheus-stack -n monitoring --set ingress.enabled=true
+helm update --install monitoring prometheus-community/kube-prometheus-stack -n monitoring 
 ```
 
 Ingress para o Grafana
@@ -28,13 +28,13 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: grafana-ingressroute
-  nameserver: monitoring
+  namespace: monitoring
 spec:
   entryPoints:
     - web
   routes:
   - kind: Rule
-    match: PathPrefix(`/`)
+    match: Host(`grafana.seudominio.com`)
     services:
     - name: monitoring-grafana
       port: 80

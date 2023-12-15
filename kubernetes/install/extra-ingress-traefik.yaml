@@ -9,7 +9,7 @@ spec:
   routes:
   - kind: Rule
 #   match: PathPrefix(`/dashboard`)
-    match: Host(`k8s.unicoob.local`)
+    match: Host(`traefik.seudominio.com`)
     services:
     - name: api@internal
       kind: TraefikService

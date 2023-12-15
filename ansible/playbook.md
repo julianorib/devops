@@ -172,6 +172,11 @@ task:
         name: containerd.io
         state: present
         update_cache: yes
+
+    - name: Instalar Zabbix Agent
+      ansible.builtin.package:
+        name: zabbix-agent
+        state: present
 ```
 ### Executar um determinado comando
 ```
@@ -186,4 +191,28 @@ task:
   - name: Reboot
     ansible.builtin.reboot: 
       reboot_timeout: 120
+```
+### Ver Facts
+Este item pode ser utilizado para visualizar variáveis dos hosts que podem ser utilizadas nos Playbooks.
+```
+  tasks:
+    - name: Show facts
+      ansible.builtin.debug:
+        var: ansible_facts
+```
+
+Exemplo:
+```
+{{ ansible_distribution_release }}
+{{ ansible_os_family }}
+```
+
+### Criando condições 
+```
+    - name: Ver distribuicao
+      ansible.builtin.debug:
+        msg:
+          - "Este é um Redhat"
+          - "{{ ansible_os_family }}"
+      when: (ansible_facts['os_family']) == "RedHat"
 ```
