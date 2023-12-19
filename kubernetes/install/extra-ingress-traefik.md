@@ -39,8 +39,8 @@ Será necessário os arquivos:
 - chave.key
 
 Deverá analisar a estratégia de DNS.\
-- Se for utilizar servico.dominio.com, e o certificado for wildcard, poderá criar um secret apenas no namespace default e apontar a "secret" no "ingressroute websecure" de cada aplicação.
-- Se for utilizar dominio.com/ path, poderá criar um secret apenas no namespace default e apontar a "secret" no "ingressroute websecure" de cada aplicação.
+- Se for utilizar servico.dominio.com, e o certificado for wildcard, poderá criar um secret no namespace da aplicação e apontar a "secret" no "ingressroute websecure" de cada aplicação.
+- Se for utilizar dominio.com/ path, poderá criar um secret no namespace da aplicação e apontar a "secret" no "ingressroute websecure" de cada aplicação.
 
 Crie uma secret com os arquivos de certificado:
 ```
