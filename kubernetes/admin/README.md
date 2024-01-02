@@ -1,4 +1,9 @@
-## Criando usuários
+# Criando usuários para Administrar um Namespace
+
+Tenha ou crie um namespace:
+```
+kubectl create namespace Example
+```
 
 Criar uma chave
 ```
@@ -60,22 +65,73 @@ Execute os comandos abaixo
 ```
 kubectl config --kubeconfig bob-config set-credentials bob --client-key=bob.key --client-certificate=bob.crt --embed-certs=true
 
-kubectl config --kubeconfig bob-config set-context bob --cluster=kubernetes --user=bob
+kubectl config --kubeconfig bob-config set-context bob --cluster=kubernetes --namespace Example --user=bob
 
 kubectl config --kubeconfig bob-config use-context bob
 
 ```
 
 
-Dar permissão ao usuário:
+Dar permissão ao usuário.
+
+O manifesto abaixo dá permissão geral para um usuário conseguir administrar seus recursos em um determinado namespace.
+
 ```
-kubectl create clusterrolebinding bob --clusterrole=cluster-admin --user=bob
-kubectl create clusterrolebinding bob --clusterrole=view --user=bob
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: bob-role
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: bob-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: bob-role
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: bob
+```
+
+Aplique o mesmo:
+```
+kubectl apply -f user-namespace -n Example
 ```
 
 
-Tipos:
-    - cluster-admin
-    - admin
-    - edit
-    - view
+# Criando cotas de Recursos para um namespace
+
+Crie um manifesto com o conteúdo abaixo.
+```
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-resources
+spec:
+  hard:
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "1"
+    limits.memory: 1Gi
+```
+
+Aplique com:
+```
+kubectl apply -f manifest.yaml -n Example
+```
