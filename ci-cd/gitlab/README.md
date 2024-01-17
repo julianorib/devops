@@ -10,45 +10,35 @@ Para criar uma pipeline CI/CD no Gitlab, você precisa ter uma conta e um projet
 .gitlab-ci.yml
 ```
 
+Para execução da Pipeline, é utilizado os "Runners".\
+Há Runners compartilhados, mas o melhor é criar/registrar um Runner.
+
+https://docs.gitlab.com/runner/install/
+
+Após instalar um Runner, é necessário registrar.
+```
+gitlab-runner register --url endereçoGitLab --token <token>
+```
+
 A estrutura de um pipeline no Gitlab é bem simples.
 
 .gitlab-ci.yml
 ```
 stages:
-    - test
-    - build
-    - deploy
+  - build
+  - test
 
-Testes 1:                 # pode haver mais de 1 estágio com vários nomes, porém referenciando o mesmo estágio (test).
-    stage: test
-    image: caminhodaimagemDocker
-    script: ## comandos linux
-     - export VARIAVEL=valor
-     - export VARIAVEL2=valor2
-     - echo "mensagem de teste" || true
+job_build:
+  stage: build
+  script:
+    - echo "Building the project"
 
-Docker Build:
-    stage: build
-    tags:
-      - shell           # Não entendi ainda este item
-    before_script:
-      - docker login -u $VAR_REPO_USER -p $VAR_REPO_PASS $VAR_REPO
-    script:
-      - docker build -t $VAR_REPO/nomedaimagem:$CI_PIPELINE_ID .
-      - docker build -t $VAR_REPO/nomedaimagem:latest .
-      - docker push $VAR_REPO/nomedaimage:$CI_PIPELINE_ID
-    only:
-      - main            # Referenciando que só irá executar na Branch main
-
-Deploy Kubernetes:
-    stage: deploy
-    image: bitnami/kubectl:1.14 # Exemplo
-    before_script:
-      - export KUBECONFIG=$VAR_KUBE_TOKEN
-    script:
-      - kubectl apply -f . -R 
-
+job_test:
+  stage: test
+  script:
+    - echo "Running tests"
 ```
+
 
 ## Variáveis
 
