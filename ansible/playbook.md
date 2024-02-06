@@ -60,6 +60,8 @@ os demais playbooks (main.yaml) iniciam os arquivos da seguinte maneira:
 ansible-playbook -i hosts.cfg playbook.yaml 
 
 ansible-playbook -i hosts.cfg playbook.yaml -b -K
+
+ansible-playbook -i hosts.cfg playbook.yaml --limit HOST -b -K
 ```
 
 ## Modulos de Playbooks
