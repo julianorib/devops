@@ -22,6 +22,9 @@ cat bob.csr | base64 | tr -d "\n"
 
 Criar e aplicar um manifesto com um Objeto "CertificateSigningRequest"
 ```
+vim bob.yaml
+```
+```
 apiVersion: certificates.k8s.io/v1
 kind: CertificateSigningRequest
 metadata:
@@ -32,6 +35,9 @@ spec:
   expirationSeconds: 31536000 #1ano
   usages:
   - client auth
+```
+```
+kubectl apply -f bob.yaml
 ```
 
 Aprovar a Requisição no Kubernetes
@@ -72,7 +78,7 @@ kubectl config --kubeconfig bob-config use-context bob
 ```
 
 
-Dar permissão ao usuário.
+## Dar permissão ao usuário para Administrar um Namespace
 
 O manifesto abaixo dá permissão geral para um usuário conseguir administrar seus recursos em um determinado namespace.
 
@@ -114,6 +120,50 @@ Aplique o mesmo:
 kubectl apply -f user-namespace -n Example
 ```
 
+## Dar permissão total para um usuário no Cluster.
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: devops-clusterrole
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: devops-clusterrole-bind
+subjects:
+- kind: User
+  name: devops
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: devops-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+```
+
+Aplicar o manifesto:
+```
+kubectl apply -f bob-role.yaml
+```
+
+Ver os recursos para dar permissão caso necessário:
+```
+kubectl api-resources
+```
 
 # Criando cotas de Recursos para um namespace
 
