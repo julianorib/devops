@@ -1,5 +1,8 @@
 # Criando usuários para Administrar um Namespace
 
+Ajuda:\
+<https://www.linuxtips.io/blog/descomplicando-rbac-no-kubernetes>
+
 Tenha ou crie um namespace:
 ```
 kubectl create namespace Example
@@ -185,3 +188,4 @@ Aplique com:
 ```
 kubectl apply -f manifest.yaml -n Example
 ```
+
