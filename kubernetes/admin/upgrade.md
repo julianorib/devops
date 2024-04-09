@@ -9,6 +9,10 @@ https://v1-28.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-u
 *Observações:*\
 **Os certificados de serviços (APISERVER, ETC, CONTROLLER-MANAGER, KUBELET, ETC) são renovados automaticamente no Upgrade de versão.**
 
+**Não há tempo de inatividade dos Workloads.**
+
+# ControlPlane
+
 ## Ajustar os repositórios
 
 Verificar qual repositório está habilitado.\
@@ -30,7 +34,7 @@ yum install -y kubeadm-'1.28.x-*' --disableexcludes=kubernetes
 kubeadm upgrade plan
 ```
 
-## Upgrade the node 
+## Upgrade node controlplane
 *replace x with the patch version you picked for this upgrade*
 ```
 kubeadm upgrade apply v1.28.x
@@ -42,7 +46,7 @@ Aguardar a mensagem:
 [upgrade/kubelet] Now that your control plane is upgraded, please proceed with upgrading your kubelets if you haven't already done so.
 ```
 
-## Upgrade demais nós Control Plane
+## Upgrade demais nodes Control Plane
 ```
 kubeadm upgrade node
 ```
@@ -78,7 +82,7 @@ systemctl restart kubelet
 kubectl uncordon <node-to-uncordon>
 ```
 
-# Upgrade Nodes (Worker)
+# Nodes (Worker)
 
 O procedimento de atualização em nós de trabalho deve ser executado um nó de cada vez ou alguns nós de cada vez, sem comprometer a capacidade mínima necessária para executar suas cargas de trabalho.
 
