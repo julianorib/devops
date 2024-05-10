@@ -1,10 +1,4 @@
-### Servidores para gerenciar os demais
-
-- HMLSRV006 (USER: sicoob)
-- MGFSRV014 (USER: sicoob)
-
-
-### Comandos AD-HOC mais comuns
+# Comandos AD-HOC mais comuns
 
 #### Sintaxe:
 ```
