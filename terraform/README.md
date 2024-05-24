@@ -205,6 +205,37 @@ name = "${random_pet.example.id}-teste"
 - Object
 - Tuple
 
+### 3 formas para preencher as variáveis
+
+- Preenchendo o arquivo variables.tfvars:
+
+variavel = valor
+
+- Criando variáveis de ambiente:
+
+```
+export TF_VAR_variavel=valor
+```
+
+- Na hora de aplicar o Projeto:
+
+```
+terraform apply -var="nomevariavel='valorvariavel'"
+```
+
+### Validação de variáveis
+
+É possivel criar condições para que não seja informado um valor incorreto em variáveis.
+```
+variable teste {
+  default = "texto"
+  validation {
+    condition = contains(var.teste, "texto")
+    error_message = "Digite a palavra texto"
+  }
+}
+```
+
 ## Outputs
 
 Os outputs são para mostrar informações ao final da execução do projeto.
@@ -249,6 +280,8 @@ Também é possível contar uma quantidade de itens dentro de uma variável:
   count = length(var.subnet)
 ```
 - for each
+
+Parecido com o Count, porém busca através de uma Lista, Objeto, Set, Map.
 
 - dynamic
 Uma outra forma de criar diversos recursos semelhantes.
@@ -355,6 +388,10 @@ module "vpc-example" {
 
 ## Terraform state
 
+```
+Backend
+```
+
 O state é o "estado" do projeto. Quando é criado um projeto, o terraform cria um arquivo "terraform.tfstate", e este é utilizado para manipulação do projeto todo, como recriar, apagar, etc. É de extrema importância mante-lo.
 
 A boa prática, recomenda que o "state" fique armazenado em outro local e não localmente. 
@@ -365,6 +402,33 @@ Formas alternativas de armazenar o state:
 - Local (compartilhado na rede)
 - Postgresql
 - Kubernetes
+
+```
+terraform {
+  backend "local"
+    path = "/nfs/xyz/projeto.tfstate"
+}
+```
+```
+terraform init -migrate-state
+```
+```
+terraform {
+  backend "local"
+}
+```
+```
+terraform init -migrate-state -backend-config="path=/nfs/xyz/projeto.tfstate"
+```
+
+Também é possível passar os parametros do backend via variáveis de ambiente. Depende de cada backend escolhido.
+
+```
+export KUBE_CONFIG_PATH="caminho/config"
+```
+```
+terraform init -migrate-state
+```
 
 ### Comandos para visualização e manipulação do State
 
@@ -404,7 +468,8 @@ terraform state rm "recurso.nome"
 terraform state rm "aws_instance.virtual_machine"
 ```
 
-Importar um recurso para que seja gerenciado pelo Terraform.
+### Importar um recurso para que seja gerenciado pelo Terraform.
+
 Para isto, é necessário executar alguns passos antes.
 - Criar um datasource no projeto
 ```
@@ -412,16 +477,21 @@ data provider_recurso example {
   name = "nomeExatodoRecurso"
 }
 ```
+Em seguida aplicar.
+
 - Verificar o estado do projeto para pegar informações do Recurso.
 ```
 terraform state list
 terraform state show "data.provider_recurso.example"
 ```
-- Com as informações em mãos, será necessário remover o datasource e criar um recurso com os dados.
+- Com as informações em mãos, será necessário remover o datasource e criar um recurso com os dados.\
+Ter informações basicas do recurso em mãos. Ver pela documentação quais são obrigatórios.\
 Anotar o ID exibido no state show.
 ```
 resource provider_recurso example {
-  name = nomeExatodoRecurso
+  name  = nomeExatodoRecurso
+  image = xyz
+  size  = klm
   infos adicionais
   ...
 }
@@ -431,7 +501,29 @@ resource provider_recurso example {
 terraform import provider_recurso.example ID
 ```
 
+## Lifecycle
+
+Aplicado no Recurso. 
+```
+lifecycle {
+  parametro = false/true
+}
+```
+
+- Create before destroy
+
+- Prevent Destroy
+
+- Ignore Changes
+
+
 ## Workspace
 
 Uma forma de reaproveitar projetos e códigos em diferentes ambientes (Dev, Homol, Produção, etc).
 
+```
+terraform workspace new homologacao
+terraform workspace list
+terraform workspace select producao
+terraform workspace delete homologacao
+```
