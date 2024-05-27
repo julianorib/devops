@@ -16,6 +16,51 @@ playbook.yaml
         msg: "Esse é meu primeiro Playbook"
 ```
 
+## Variáveis
+
+Declarar uma variável em um Playbook simples:
+
+playbook.yaml
+```
+- name: Escrever o nome da Playbook
+  hosts: grupodehosts
+  vars:
+    - nome: Fulano
+  tasks:
+    - name: Escrever o nome da Primeira Tarefa
+      ansible.builtin.debug:
+        msg: "Olá {{ nome }} !"
+
+```
+
+Declarar um arquivo de variável:
+
+playbook.yaml
+```
+- name: Escrever o nome da Playbook
+  hosts: grupodehosts
+  vars_files:
+    - vars.yaml
+  tasks:
+    - name: Escrever o nome da Primeira Tarefa
+      ansible.builtin.debug:
+        msg: "Olá {{ nome }} !"
+```
+vars.yaml
+```
+nome: Fulano
+```
+
+Declarar variável via linha de comando:
+```
+ansible-playbook playbook.yaml --extra-vars "nome=FULANO"
+```
+```
+ansible-playbook playbook.yaml --extra-vars "@vars.yaml"
+```
+
+
+
 ## Playbook com Roles (funções):
 
 [https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html)
@@ -218,3 +263,44 @@ Exemplo:
           - "{{ ansible_os_family }}"
       when: (ansible_facts['os_family']) == "RedHat"
 ```
+
+### Template
+
+ansible.builtin.template
+
+Permite criar um arquivo de configuração com as variáveis.\
+Necessita o arquivo de origem, informando a variável dentro dele.\
+Depois utilize o  modulo template para substituir o valor.
+
+#### Estrutura de decisão (condição)
+
+arquivo de base do template:
+```
+{% if condicao == 'valor' %}
+Ola {{ fulano }}
+{% else %}
+Hi {{ fulano }}
+{% endif %}
+```
+
+#### Estrutura de repetição (for)
+
+arquivo de base do template:
+```
+{% for usuario in usuarios %}
+{% if condicao == 'valor' %}
+Ola {{ fulano }}
+{% else %}
+Hi {{ fulano }}
+{% endif %}
+{% endfor %}
+```
+
+arquivo de variável:
+```
+usuarios:
+  - fulano
+  - ciclano
+  - beltrano
+```
+

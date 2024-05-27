@@ -74,6 +74,19 @@ workers
 10.0.0.8
 10.0.0.9
 ```
+### Variáveis no próprio host
+```
+[webserver]
+192.168.0.5 ansible_user=user nome=teste
+192.168.0.6
+```
+
+### Variáveis por grupo no próprio Inventário
+```
+[bancodados:vars]
+ansible_ssh_private_key_file=caminhoDaChave
+ansible_user=ec2
+```
 
 ## Group_vars 
 

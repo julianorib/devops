@@ -86,6 +86,14 @@ ansible -i caminho-hosts.cfg grupo -u user --private-key caminho-chave -m yum -a
 ```
 <br>
 
+
+#### Ansible Facts
+
+```
+ansible all -m setup
+ansible all -m setup -a "filter=ansible_eth"
+```
+
 #### Documentação Completa:
 <br>
 
