@@ -277,9 +277,9 @@ Depois utilize o  modulo template para substituir o valor.
 arquivo de base do template:
 ```
 {% if condicao == 'valor' %}
-Ola {{ fulano }}
+Ola {{ usuario }}
 {% else %}
-Hi {{ fulano }}
+Hi {{ usuario }}
 {% endif %}
 ```
 
@@ -289,9 +289,9 @@ arquivo de base do template:
 ```
 {% for usuario in usuarios %}
 {% if condicao == 'valor' %}
-Ola {{ fulano }}
+Ola {{ usuario }}
 {% else %}
-Hi {{ fulano }}
+Hi {{ usuario }}
 {% endif %}
 {% endfor %}
 ```

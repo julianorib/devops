@@ -16,7 +16,7 @@ Ansible roda de qualquer lugar.
 Porque?
 <br>
 Super fácil, portável, praticamente independente, não é necessário conhecer progrmação,
-trabalha com formato testo, é livre e de código aberto.
+trabalha com formato texto, é livre e de código aberto.
 
 Inventário
 <br>
