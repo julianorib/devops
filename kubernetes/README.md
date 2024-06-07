@@ -100,6 +100,11 @@ Configurar uma Variável de ambiente com dados do config para conexão com o Clu
 export KUBECONFIG="${KUBECONFIG}:./config"
 ```
 
+Definir um namespace padrão temporariamente.
+```
+kubectl config set-context --current --namespace=seunamespace
+```
+
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 
