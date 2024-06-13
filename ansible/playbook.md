@@ -99,6 +99,10 @@ os demais playbooks (main.yaml) iniciam os arquivos da seguinte maneira:
       msg: "Esse é meu primeiro Playbook"
 ```
 
+## Testar estrutura do Playbook
+
+ansible-playbook playbook.yaml -C
+
 ## Como executar um Playbook
 
 ```bash
@@ -119,6 +123,15 @@ ansible-playbook -i hosts.cfg playbook.yaml --limit HOST -b -K
       state: touch
       mode: u=rw,g=r,o=r
 ```
+
+### Criar uma pasta:   
+```
+  - name: Criação de uma pasta
+    ansible.builtin.file:
+      path: /tmp/teste
+      state: directory
+```
+
 ### Copiar um arquivo ou pasta:
 ```
     - name: Copiar o Bitdefender para o Temp do Servidor
