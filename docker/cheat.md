@@ -2,7 +2,7 @@
 
 ## Containers
 
-| comando      |  descrição |
+| Comando      |  Descrição |
 |--------------|------------|
 | docker ps    |   ver containers ativos |
 | docker ps -a |   ver todos containers |
@@ -19,22 +19,18 @@
 
 ## Imagens
 
-docker build -t user/imagem:v1.0 .
-docker build -t user/imagem:v1.0 . -f DockerfileExample
-
-docker image ls
-
-docker image rm imagem
-docker image rm -f imagem
-
-docker image prune
+| Comando      |  Descrição |
+|--------------|------------|
+| docker build -t user/imagem:v1.0 . | criar uma imagem |
+| docker build -t user/imagem:v1.0 . -f DockerfileExample | criar uma imagem com um Dockerfile diferente | 
+| docker image ls | ver as imagens baixadas | 
+| docker image rm imagem | apagar uma imagem | 
+| docker image rm -f imagem | apagar uma imagem forçadamente |
+| docker image prune | limpar imagens inativas | 
 
 ## Repositório
 
-docker login
-
-docker push user/imagem:v1.0
-
-docker tag user/imagem:v1.0 user/imagem:latest
-
-docker push user/imagem:latest
+| docker login
+| docker push user/imagem:v1.0
+| docker tag user/imagem:v1.0 user/imagem:latest
+| docker push user/imagem:latest
