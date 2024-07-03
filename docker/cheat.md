@@ -30,7 +30,10 @@
 
 ## Repositório
 
-| docker login
-| docker push user/imagem:v1.0
-| docker tag user/imagem:v1.0 user/imagem:latest
-| docker push user/imagem:latest
+| Comando      |  Descrição |
+|--------------|------------|
+| docker login | fazer login no Registry Docker Hub | 
+| docker login registry.xpto.com | fazer login no Registry Especifico | 
+| docker push user/imagem:v1.0 | Subir uma imagem para o Registry |
+| docker tag user/imagem:v1.0 user/imagem:latest | Tagear uma imagem como latest |
+| docker push user/imagem:latest | Subir a imagem latest para o Registry |
