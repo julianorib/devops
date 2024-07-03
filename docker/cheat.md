@@ -2,8 +2,10 @@
 
 ## Containers
 
-docker ps
-docker ps -a
+| comando      |  descrição |
+|--------------|------------|
+| docker ps    |   ver containers ativos |
+| docker ps -a |   ver todos containers |
 
 docker run -d -p port:port imagem
 
