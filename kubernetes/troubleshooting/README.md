@@ -66,3 +66,17 @@ kubectl port-forward pod-name 8080:<port-container>
 | Status Nodes        | kubectl get nodes                 | kubectl describe node           |
 | Kubelet OK      ?   | systemctl status kubelet          |                                 |
 | Kubelet com erro?   | journalctl -u kubelet -n 100      |                                 |
+
+
+## Consultar recursos por Namespace
+```
+kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get -n <NAMESPACE>
+```
+
+## Remover um namespace forçadamente
+```
+export NAMESPACE="monitoring"
+```
+```
+kubectl get namespace $NAMESPACE -o json   | tr -d "\n" | sed "s/\"finalizers\": \[[^]]\+\]/\"finalizers\": []/"   | kubectl replace --raw /api/v1/namespaces/$NAMESPACE/finalize -f -
+```
