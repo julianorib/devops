@@ -74,6 +74,7 @@ Gerenciar Jenkins, Configurar Segurança Global
 Agents, Porta Randomica
 
 Gerenciar Jenkins, Configurações Globais
+```
 Cloud.
     Definir o nome (PROD, HOMOL, etc).
     Tipo, Kubernetes.
@@ -88,4 +89,4 @@ Cloud.
         POD Template -> Containers, Add.
         POD Template -> Containers - Name=jnlp Image=jenkins/jnlp-slave:latest
         POD Template -> Containers -> Retention=On Failure
-
+```
