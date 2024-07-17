@@ -21,7 +21,7 @@ O que o DevOps significa para as equipes? O DevOps permite que funções anterio
 - [Git](git/README.md)
 - [Helm](helm/README.md)
 - [Kubernetes](kubernetes/README.md)
-- [Observabilidade](observabilidade/readme.md)
-- [QA](qa/readme.md)
+- [Observabilidade](Observabilidade/README.md)
+- [QA](QA/README.md)
 - [Terraform](terraform/README.md)
 
