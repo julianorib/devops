@@ -42,7 +42,7 @@ tool para realizar a comunicação com o Cluster e executar todas as operações
 
 ## Cluster Kubernets Componentes
 
-![kube_componentes](kubernetes-components.png)
+![componentes](components.png)
 
 https://kubernetes.io/docs/concepts/overview/components/
 
@@ -95,20 +95,8 @@ O kube-proxy é um componente do Kubernetes que atua como um proxy de rede e um 
 
 ## Comandos mais usados
 
-Configurar uma Variável de ambiente com dados do config para conexão com o Cluster.
-```
-export KUBECONFIG="${KUBECONFIG}:./config"
-```
-
-Definir um namespace padrão temporariamente.
-```
-kubectl config set-context --current --namespace=seunamespace
-```
-
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/
-
-
-https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
+<https://kubernetes.io/docs/reference/kubectl/cheatsheet/>\
+<https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands>
 
 
 ## Padrão de manifesto

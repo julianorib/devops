@@ -8,3 +8,9 @@ Este comando verifica a expiração dos certificados na PKI local gerenciada pel
 ```
 kubeadm certs check-expiration
 ```
+
+# Secret TLS
+
+```
+kubectl create secret tls domain-secret --cert=certificado.crt --key=certificado-key.pem
+```

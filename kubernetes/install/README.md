@@ -88,7 +88,25 @@ kubectl get pods
 kubeadm reset -f && rm -rf /etc/cni/net.d && iptables -F && rm -rf $HOME/.kube/config
 
 
-## Extras
+## Extras (tools)
 
-https://artifacthub.io/
+<https://artifacthub.io/>
 
+### Metrics Server
+<https://github.com/kubernetes-sigs/metrics-server>
+
+### Metallb
+<https://kind.sigs.k8s.io/docs/user/loadbalancer/>
+
+### Nfs Storage Class
+<https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner>
+
+### Grafana
+
+### Kube Prometheus Stack
+<https://github.com/prometheus-operator/kube-prometheus>
+
+### Prometheus Operator
+<https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md#include-servicemonitors>
+
+### Grafana Loki

@@ -40,6 +40,8 @@ O container ficou sem memória.
 
 ## Fluxo de análise POD
 
+| Verificar | Get | Describe | Logs |
+|-----------|-----|----------|------|
 | Verificar status do POD     | kubectl get pods          | kubectl describe pod          | kubectl logs pod            |
 | Verificar status do Deploy  | kubectl get deploy        | kubectl describe deploy       | kubectl logs deploy         |
 | Verificar status do Service | kubectl get service       | kubectl describe service      | kubectl logs service        |
@@ -62,6 +64,8 @@ kubectl port-forward pod-name 8080:<port-container>
 
 ## Fluxo de análise NODE
 
+| Descrição | Verificar | Verificar |
+|-----------|-----------|-----------|
 | Componentes         | kubectl get componentstatuses     | kubectl get pods -n kube-system |
 | Status Nodes        | kubectl get nodes                 | kubectl describe node           |
 | Kubelet OK      ?   | systemctl status kubelet          |                                 |
