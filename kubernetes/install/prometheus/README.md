@@ -19,7 +19,7 @@ kubectl create namespace monitoring
 ```
 ```
 helm install [RELEASE_NAME] prometheus-community/kube-prometheus-stack -n monitoring
-helm update --install monitoring prometheus-community/kube-prometheus-stack -n monitoring 
+helm upgrade --install monitoring prometheus-community/kube-prometheus-stack -n monitoring 
 ```
 
 Ingress para o Grafana
@@ -56,3 +56,8 @@ helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm install grafana grafana/grafana -n monitoring --set service.type=LoadBalancer 
 
+
+# Loki
+helm repo add grafana https://grafana.github.io/helm-charts
+helm show values loki grafana/loki-stack
+helm upgrade --install loki grafana/loki-stack -n monitoring 
