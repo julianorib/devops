@@ -9,18 +9,19 @@ O que o DevOps significa para as equipes? O DevOps permite que funções anterio
 
 ![roadmap](roadmap.jpg)
 
-# Conteúdo de estudos resumido para uso pessoal.
-
-- [Ansible]()
-- [CI-CD]()
-- [Docker]()
-- [Git]()
-- [Helm]()
-- [Kubernetes]()
-- [Observabilidade]()
-- [QA]()
-- [Terraform]()
-
 # Cheat Sheet principais ferramentas / tecnologias
 
 <https://github.com/julianorib/cheat>
+
+# Conteúdo de estudos resumido para uso pessoal.
+
+- [Ansible](ansible/README.md)
+- [CI-CD](ci-cd/README.md)
+- [Docker](docker/README.md)
+- [Git](git/README.md)
+- [Helm](helm/README.md)
+- [Kubernetes](kubernetes/README.md)
+- [Observabilidade](observabilidade/readme.md)
+- [QA](qa/readme.md)
+- [Terraform](terraform/README.md)
+
