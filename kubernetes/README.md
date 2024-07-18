@@ -109,3 +109,14 @@ metadata:
 spec:
 ```
 
+## Proximos passos Estudos
+
+- Network Policy
+- Estudos CKA
+- Probes
+- Storage Aplicações
+- cmds
+- Service Account
+- RBAC
+
+
