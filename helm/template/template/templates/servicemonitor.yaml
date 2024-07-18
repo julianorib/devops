@@ -1,0 +1,17 @@
+{{- if eq .Values.metrics "disabled" }}
+{{- else }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ $.Values.namespace }}  
+  labels:
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  endpoints:
+    - port: http-web
+      path: /metrics
+{{- end }}
