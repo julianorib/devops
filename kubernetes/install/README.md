@@ -110,3 +110,19 @@ kubeadm reset -f && rm -rf /etc/cni/net.d && iptables -F && rm -rf $HOME/.kube/c
 <https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md#include-servicemonitors>
 
 ### Grafana Loki
+<https://grafana.com/docs/loki/latest/setup/install/helm/>
+
+```
+helm install loki grafana/loki -n monitoring --values loki.yaml --set singleBinary.persistence.storageClass=nfs-client
+```
+
+Para criar um Datasources no Grafana:
+```
+URL: http://loki-gateway.namespace
+HTTP Headers: X-Scope-OrgID : 1
+```
+
+### Promtail
+<https://grafana.com/docs/loki/latest/send-data/promtail/installation/>
+
+
