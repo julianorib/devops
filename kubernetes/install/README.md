@@ -102,9 +102,43 @@ kubeadm reset -f && rm -rf /etc/cni/net.d && iptables -F && rm -rf $HOME/.kube/c
 <https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner>
 
 ### Grafana
+<https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm/>
+
+```
+helm upgrade --install grafana grafana/grafana -n monitoring --create-namespace 
+```
+| Parametros | Descrição |
+|---|---|
+| --set persistence.enabled=true | Habilita a persistencia de volume |
+| --set persistence.storageClassName=nfs-client | Apontamento para o StorageClass NFS |
+| --set service.type=LoadBalancer | Cria o serviço como LoadBalancer |
+
+Obtem a senha do Grafana:
+```
+kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+
+Dashs:
+| ID | Description |
+|---|---|
+| 16966 | Container Log |
+| 15757 | k8s-views-global |
+| 15758 | k8s-views-namespace |
+| 15759 | k8s-views-nodes |
+| 15760 | k8s-views-nodes |
+
 
 ### Kube Prometheus Stack
 <https://github.com/prometheus-operator/kube-prometheus>
+
+```
+helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --create-namespace -n monitoring
+```
+| Parametros | Descrição |
+|---|---|
+| --set grafana.enabled=false | Não instalar o Grafana |
+| --set prometheus.service.type=LoadBalancer | Cria o serviço como LoadBalancer |
+
 
 ### Prometheus Operator
 <https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md#include-servicemonitors>
@@ -113,8 +147,11 @@ kubeadm reset -f && rm -rf /etc/cni/net.d && iptables -F && rm -rf $HOME/.kube/c
 <https://grafana.com/docs/loki/latest/setup/install/helm/>
 
 ```
-helm install loki grafana/loki -n monitoring --values loki.yaml --set singleBinary.persistence.storageClass=nfs-client
+helm install loki grafana/loki -n monitoring --values loki.yaml 
 ```
+| Parametros | Descrição |
+|---|---|
+| --set singleBinary.persistence.storageClass=nfs-client | Apontamento para o StorageClass NFS |
 
 Para criar um Datasources no Grafana:
 ```
@@ -126,3 +163,13 @@ HTTP Headers: X-Scope-OrgID : 1
 <https://grafana.com/docs/loki/latest/send-data/promtail/installation/>
 
 
+### Traefik
+<https://doc.traefik.io/traefik/getting-started/install-traefik/#use-the-helm-chart>
+
+```
+helm upgrade --install traefik traefik/traefik --create-namespace -n traefik 
+```
+| Parametros | Descrição |
+|---|---|
+| --version 27.0.2  | Versão do Chart que contém o Traefik v2 |
+--set image.tag="2.11.5" | Ultima versão do Traefik v2 |
