@@ -173,3 +173,8 @@ helm upgrade --install traefik traefik/traefik --create-namespace -n traefik
 |---|---|
 | --version 27.0.2  | Versão do Chart que contém o Traefik v2 |
 --set image.tag="2.11.5" | Ultima versão do Traefik v2 |
+
+Criando uma nova Porta Exposta
+```
+ --set ports.ssh.port=10022 --set ports.ssh.expose.default=true --set ports.ssh.exposedPort=10022 --set ports.ssh.protocol=TCP
+```
