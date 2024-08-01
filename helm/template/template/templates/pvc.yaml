@@ -1,5 +1,8 @@
 {{- range $key,$value := .Values.containers }}
 {{- range $key,$value := .volumes }}
+{{- with .}}
+{{- if eq .storage "host" }}
+{{- else }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -11,9 +14,9 @@ spec:
   storageClassName: nfs-client
   resources:
     requests:
-      {{- with .}}
       storage: {{ .storage }}
 {{- end }}
 ---
+{{- end }}
 {{- end }}
 {{- end }}

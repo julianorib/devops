@@ -46,9 +46,17 @@ spec:
         {{- end }}
       {{- range $key,$value := .Values.containers }}
         {{- range $key, $value := .volumes }}
+      {{- if eq .storage "host" }}
+      volumes:
+        - name: {{ $key }}
+          hostPath:
+            path: {{ .mountpath }}
+            type: File
+      {{- else }}
       volumes:
         - name: {{ $key }}
           persistentVolumeClaim:
             claimName: {{ $key }}-{{ $.Release.Name }}
         {{- end}}
+      {{- end }}
       {{- end }}
