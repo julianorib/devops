@@ -10,7 +10,7 @@ spec:
   entryPoints:
   - ssh
   routes:
-  - match: HostSNIRegexp(`{{ $.Values.ingress.host }}`)
+  - match: HostSNI(`*`)
     services:
     - name: ssh-{{ $.Release.Name }}
       port: 10022

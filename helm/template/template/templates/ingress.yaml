@@ -1,31 +1,33 @@
+{{- with .Values.ingress.host }}
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: {{ .Release.Name }}
-  namespace: {{ .Values.namespace }}
+  name: {{ $.Release.Name }}
+  namespace: {{ $.Values.namespace }}
 spec:
   entryPoints:
     - web
   routes:
   - kind: Rule
-    match: Host(`{{ .Values.ingress.host }}`) && PathPrefix(`{{ .Values.ingress.path }}`)
+    match: Host(`{{ $.Values.ingress.host }}`) && PathPrefix(`{{ $.Values.ingress.path }}`)
     services:
-    - name: http-web-{{ .Release.Name }}
+    - name: http-web-{{ $.Release.Name }}
       port: 80
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: {{ .Release.Name }}-tls
-  namespace: {{ .Values.namespace }}
+  name: {{ $.Release.Name }}-tls
+  namespace: {{ $.Values.namespace }}
 spec:
   entryPoints:
     - websecure
   routes:
   - kind: Rule
-    match: Host(`{{ .Values.ingress.host }}`) && PathPrefix(`{{ .Values.ingress.path }}`)
+    match: Host(`{{ $.Values.ingress.host }}`) && PathPrefix(`{{ $.Values.ingress.path }}`)
     services:
-    - name: http-web-{{ .Release.Name }}
+    - name: http-web-{{ $.Release.Name }}
       port: 80  
   tls:
-    secretName: {{ .Values.ingress.tls }}
+    secretName: {{ $.Values.ingress.tls }}
+{{- end }}

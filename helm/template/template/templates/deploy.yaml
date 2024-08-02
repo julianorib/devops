@@ -18,8 +18,8 @@ spec:
         - name: {{ $.Release.Name }}-{{ $key }}
           {{- with . }}
           image: {{ .imagem }}
-          {{- range $key, $value := .ports }}
           ports:
+          {{- range $key, $value := .ports }}
             - name: {{ $key }}
               containerPort: {{ .containerPort }}      
           {{- end }}
@@ -37,23 +37,22 @@ spec:
                 name: {{ $.Release.Name }}
           {{- end}}
 
-          {{- range $key, $value := .volumes }}
           volumeMounts:
+          {{- range $key, $value := .volumes }}
             - name: {{ $key }}
               mountPath: {{ .mountpath }}
           {{- end}}
 
         {{- end }}
       {{- range $key,$value := .Values.containers }}
+      volumes:
         {{- range $key, $value := .volumes }}
       {{- if eq .storage "host" }}
-      volumes:
         - name: {{ $key }}
           hostPath:
             path: {{ .mountpath }}
             type: File
       {{- else }}
-      volumes:
         - name: {{ $key }}
           persistentVolumeClaim:
             claimName: {{ $key }}-{{ $.Release.Name }}

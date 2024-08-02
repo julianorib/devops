@@ -7,7 +7,7 @@ replicas: 1
 # Informe os dados dos PODs:
 containers:
   front: 
-    imagem: julianorib/mysite:v2.0
+    imagem: registry.v2.unicoob.local/app:v1.0
     resources:
       memory: 100Mi
       cpu: 0.5
@@ -30,25 +30,25 @@ autoscaling:
 
 # Definir o dns da aplicação
 ingress:
-  host: xpto.domain.local
+  host: #seudns
   path: /sistema
-  tls: tls-secret
+  tls: unicoob-secret
 
 # Definir as variaveis. 
 # Pode colocar chave valor uma embaixo da outra.
 vars:
- chave1: valor1
- chave2: valor2
- chave3: valor3
- chave4: valor4
+#  chave1: valor1
+#  chave2: valor2
+#  chave3: valor3
+#  chave4: valor4
 
 # Definir as variaveis sensiveis (Senhas). 
 # Pode colocar chave valor uma embaixo da outra.
 # Será convertido para base64 e colocado entre aspas automático.
 secrets:
- chave1: valor1
- chave2: valor2
- chave3: valor3
+#  chave1: valor1
+#  chave2: valor2
+#  chave3: valor3
 
  # Tem metricas? (disabled/enabled)
  # Caso tenha, alterar para sim.
