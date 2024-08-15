@@ -48,3 +48,5 @@ TOKEN=$(cat token)
 
 curl -k https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}/api/v1/namespaces/TESTE/pods/ --header "Authorization: Bearer $TOKEN"
 
+
+
