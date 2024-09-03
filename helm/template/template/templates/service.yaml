@@ -14,7 +14,7 @@ spec:
    ports:
      - name: {{ $key }}
        port: {{ .port }}
-       targetPort: {{ .containerPort }}
+       targetPort: {{ $key }}
    type: {{ .type }}
 {{- end }}
 ---

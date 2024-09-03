@@ -14,6 +14,20 @@ spec:
     services:
     - name: ssh-{{ $.Release.Name }}
       port: 10022
+{{- else if eq $key "gerrit" }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: {{ $.Release.Name }}-ssh
+  namespace: {{ $.Values.namespace }}
+spec:
+  entryPoints:
+  - gerrit
+  routes:
+  - match: HostSNI(`*`)
+    services:
+    - name: gerrit-{{ $.Release.Name }}
+      port: 29418
 {{- end }}
 {{- end }}
 {{- end }}

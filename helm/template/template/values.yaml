@@ -20,6 +20,11 @@ containers:
       # www:
       #   mountpath: /var/www
       #   storage: 100Mi
+      #   acceess: ReadWriteMany
+
+# Descomentar acima e renomear www para o nome do volume que desejar.
+# Se precisar mais volumes, copiar as 3 linhas abaixo de volume e mudar nome, mountpath e tamanho.
+# Se o mapeamento for para arquivo, ao invés de colocar 100Gi no storage, escrever "host"
 
 # Escalar o container caso tenha utilização de CPU acima de X valor (disabled/enabled)
 autoscaling:

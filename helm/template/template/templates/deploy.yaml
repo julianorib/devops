@@ -13,6 +13,7 @@ spec:
       labels: 
         app: {{ .Release.Name }}
     spec: 
+      serviceAccount: {{ .Release.Name }}
       containers:
         {{- range $key, $value := .Values.containers }}
         - name: {{ $.Release.Name }}-{{ $key }}
@@ -36,16 +37,14 @@ spec:
             - secretRef:
                 name: {{ $.Release.Name }}
           {{- end}}
-
           volumeMounts:
           {{- range $key, $value := .volumes }}
             - name: {{ $key }}
               mountPath: {{ .mountpath }}
           {{- end}}
-
         {{- end }}
-      {{- range $key,$value := .Values.containers }}
       volumes:
+      {{- range $key,$value := .Values.containers }}
         {{- range $key, $value := .volumes }}
       {{- if eq .storage "host" }}
         - name: {{ $key }}
