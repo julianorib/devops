@@ -11,6 +11,10 @@ containers:
     resources:
       memory: 100Mi
       cpu: 0.5
+    livenessProbe:
+      status: disabled
+      path: /health
+      port: 8080 
     ports:
       http-web:
         port: 80
@@ -57,4 +61,5 @@ secrets:
 
  # Tem metricas? (disabled/enabled)
  # Caso tenha, alterar para sim.
+ # padrão /metrics
 metrics: disabled

@@ -33,3 +33,6 @@ singleBinary:
     requests:
       cpu: 50m
       memory: 512Mi
+
+serviceAccount:
+  automountServiceAccountToken: false

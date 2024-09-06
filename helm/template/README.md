@@ -29,11 +29,6 @@ helm upgrade --install nomeaplicacao template/template --values=values.yaml -n n
 ```
 
 
-## Próximos passos
-
-- Criar Probes
-- Labels
-
 ## Atualizações
 
 - Altere o template/templates/*.yaml conforme necessário.

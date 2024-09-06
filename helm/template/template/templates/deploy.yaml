@@ -13,6 +13,7 @@ spec:
       labels: 
         app: {{ .Release.Name }}
     spec: 
+      enableServiceLinks: false
       serviceAccount: {{ .Release.Name }}
       containers:
         {{- range $key, $value := .Values.containers }}
@@ -31,6 +32,17 @@ spec:
             limits:
               memory: {{ .resources.memory | quote }}
               cpu: {{ .resources.cpu }}
+          {{- if eq .livenessProbe.status "enabled" }}
+          livenessProbe:
+            httpGet:
+              path: {{ .livenessProbe.path }}
+              port: {{ .livenessProbe.port }}
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            failureThreshold: 3
+            timeoutSeconds: 2
+          {{- else }}            
+          {{- end }}
           envFrom:
             - configMapRef:
                 name: {{ $.Release.Name }}
