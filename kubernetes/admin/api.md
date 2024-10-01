@@ -19,12 +19,27 @@ curl https://localhost:6443/ -k --key admin.key --cert admin.crt --cacert ca.crt
 
 ## Visualizando a API com TOKEN dentro de um POD:
 
+## Deploy, Service, SA, Role, Rolebinding, Token
+```
+kubectl create serviceaccount xpto -n temp
+kubectl create role xpto --resource pod --verb list -n temp
+kubectl create rolebinding xpto --role xpto --serviceaccount temp:xpto -n xpto
+kubectl create token xpto -n temp
+
+TOKEN="<token-gerado>"
+
+curl https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}/api/ -k -H "Authorization: Bearer $TOKEN"
+
+:OU:
+
+
 Caminho do Token: /var/run/secrets/kubernetes.io/serviceaccount/token
 ```
 TOKEN=$(cat token)
 
 curl https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}/api/ -k -H "Authorization: Bearer $TOKEN"
 ```
+*Este usuário não terá permissões adicionais no cluster.*
 
 ## Acessando a API através de um proxy do kubeconfig
 ```
