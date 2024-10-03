@@ -17,9 +17,25 @@ curl https://localhost:6443/ -k
 curl https://localhost:6443/ -k --key admin.key --cert admin.crt --cacert ca.crt
 ```
 
-## Visualizando a API com TOKEN dentro de um POD:
+## Core Group x Named Groups
 
-## Deploy, Service, SA, Role, Rolebinding, Token
+### Core Group
+
+Nodes, Namespace, Pods, Services, 
+
+https://localhost:6443/api/v1/
+https://localhost:6443/api/v1/namespaces/
+https://localhost:6443/api/v1/namespaces/default/pods
+
+### Named Groups
+
+Replicaset, Deployments, Statefullset, Daemonsets
+
+https://localhost:6443/apis/apps/v1/
+https://localhost:6443/apis/apps/v1/deployments
+
+
+## Visualizando a API com TOKEN dentro de um POD:
 ```
 kubectl create serviceaccount xpto -n temp
 kubectl create role xpto --resource pod --verb list -n temp
