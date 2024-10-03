@@ -83,8 +83,9 @@ name: (Opcional) Nome do workflow.
 
 ```
 name: CI Workflow
-on: Define os eventos que acionam o workflow (como push, pull request, cron).
 ```
+on: Define os eventos que acionam o workflow (como push, pull request, cron).
+
 ```
 on: 
   push:
