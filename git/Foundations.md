@@ -73,3 +73,60 @@
 | **Enterprise Managed Users (EMUs)** | Não disponível                     | Não disponível                      | Não disponível                    | Disponível                       |
 | **Políticas de segurança personalizadas** | Não disponível                  | Não disponível                      | Não disponível                 | Disponível                       |
 
+
+
+## Github Actions Syntax
+
+A sintaxe de workflows no GitHub Actions é baseada em arquivos YAML. Aqui está uma visão geral dos principais elementos:
+
+name: (Opcional) Nome do workflow.
+
+```
+name: CI Workflow
+on: Define os eventos que acionam o workflow (como push, pull request, cron).
+```
+```
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+```
+jobs: Conjunto de tarefas (jobs) que serão executadas.
+```
+jobs:
+  build:
+    runs-on: ubuntu-latest
+```
+runs-on: Especifica o ambiente onde o job será executado (ex: ubuntu-latest, windows-latest, macos-latest).
+```
+runs-on: ubuntu-latest
+```
+steps: Lista de etapas a serem executadas dentro de um job. Cada etapa pode executar comandos ou ações.
+```
+steps:
+  - name: Checkout code
+    uses: actions/checkout@v2
+  - name: Run tests
+    run: npm test
+```
+uses: Refere-se a uma ação pré-existente do GitHub Marketplace ou de um repositório público.
+```
+uses: actions/setup-node@v2
+```
+run: Executa um comando de shell.
+```
+run: echo "Hello, World!"
+```
+env: Define variáveis de ambiente para o job ou para uma etapa específica.
+```
+env:
+  NODE_ENV: production
+```
+strategy: (Opcional) Permite criar uma matriz de builds para executar jobs com diferentes combinações.
+```
+strategy:
+  matrix:
+    node-version: [10, 12, 14]
+```
+Essa estrutura modular permite definir workflows de forma clara e flexível, facilitando a automação de diversas tarefas no ciclo de desenvolvimento.
