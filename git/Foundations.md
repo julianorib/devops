@@ -25,19 +25,23 @@
 - Pull Requests (PRs): Solicitações para fundir alterações de código.
 - Discussões: Espaço para conversas públicas sobre o projeto.
 - Notificações: Alertas sobre atividades relevantes no repositório.
-- Gists, Wikis e GitHub Pages: Ferramentas para compartilhamento de código (Gists), documentação (Wikis) e hospedagem de sites (GitHub Pages).
+- Gists: Permite compartilhar pequenos trechos de código ou arquivos. Útil para armazenar ou compartilhar scripts, notas ou exemplos de código.
+- Pages: Serviço de hospedagem de sites estáticos diretamente de repositórios do GitHub. Ideal para portfólios, blogs ou documentações
+- Wikis: Documentação
 - Markdown Features: Usar Markdown para formatar conteúdo.
 - Linkar PR a um Issue: Conectar PR a um Issue para rastreamento de progresso.
 - Atribuir Issues: Designar responsáveis por tarefas ou bugs.
+- Milestones:  Usados para agrupar issues e pull requests em etapas maiores de desenvolvimento, ajudando a acompanhar o progresso de um projeto ao longo do tempo.
 - Draft PR: PRs ainda em fase de revisão inicial.
 
 ## Week 4 - Desenvolvimento Moderno
 - GitHub Actions: Automação de fluxos de trabalho (CI/CD).
 - GitHub Copilot: Assistente de codificação que sugere linhas de código.
-- GitHub Codespaces: Ambientes de desenvolvimento em nuvem.
+- GitHub Codespaces: Um ambiente de desenvolvimento na nuvem que permite programar diretamente no navegador ou em um editor compatível, como VSCode.
+- GitHub.dev: Um ambiente de edição de código online que pode ser acessado diretamente no navegador, útil para edições rápidas em repositórios.
 
 ## Week 5 - Gerenciamento de Projetos
-- GitHub Projects: Ferramenta de gerenciamento de tarefas estilo kanban.
+- GitHub Projects: Ferramenta de gerenciamento de projetos dentro do GitHub, integrando repositórios e issues com quadros kanban e outras funcionalidades de organização.
 
 ## Week 6 - Privacidade, Segurança e Administração
 - 2FA (Autenticação de Dois Fatores): Proteção extra para contas GitHub.
@@ -47,7 +51,7 @@
 - Open Source: Software com código-fonte aberto e colaborativo.
 - InnerSource: Aplicação de práticas open source dentro de empresas.
 - GitHub Sponsors: Recurso para apoiar financeiramente desenvolvedores open source.
-- Este resumo cobre o essencial de cada tópico para estudo.
+
 
 ## Tabela Comparativo Contas
 
