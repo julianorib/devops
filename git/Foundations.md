@@ -131,3 +131,25 @@ strategy:
     node-version: [10, 12, 14]
 ```
 Essa estrutura modular permite definir workflows de forma clara e flexível, facilitando a automação de diversas tarefas no ciclo de desenvolvimento.
+
+### Documentação Github Actions
+
+<https://docs.github.com/pt/actions>
+
+<https://docs.github.com/pt/actions/learn-github-actions/essential-features-of-github-actions>
+
+<https://docs.github.com/pt/actions/using-workflows/about-workflows>
+
+<https://docs.github.com/pt/actions/using-jobs/using-jobs-in-a-workflow>
+
+<https://docs.github.com/pt/actions/learn-github-actions/expressions#functions>
+
+<https://docs.github.com/pt/actions/using-jobs/using-conditions-to-control-job-execution>
+
+<https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners>
+
+<https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs>
+
+<https://github.com/marketplace?type=actions>
+
+<https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-dispatch-event>
