@@ -22,7 +22,7 @@
 
 ## Week 3 - Recursos de Colaboração
 - Issues: Ferramenta de acompanhamento de bugs, tarefas e discussões.
-- Pull Requests (PRs): Solicitações para fundir alterações de código.
+- Pull Requests (PRs): Solicitações para fundir alterações de código.\
 keywords to link: fix, close, resolve.
 - Discussões: Espaço para conversas públicas sobre o projeto.
 - Notificações: Alertas sobre atividades relevantes no repositório.
