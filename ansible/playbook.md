@@ -317,3 +317,31 @@ usuarios:
   - beltrano
 ```
 
+#### Loops com Lista e Dicionário
+```
+- name: playbook testes
+  hosts: localhost
+
+  vars:
+    lista:
+      - item1
+      - item2
+
+    dicionario:
+      chave1: valor1
+      chave2: valor2
+
+
+  tasks:
+
+    - name: task lista
+      debug:
+        msg: "debug {{ item }}"
+      loop: "{{ lista }}"
+
+
+    - name: task dicionario
+      debug:
+        msg: "debug {{ item.key}} {{ item.value }}"
+      loop: "{{ dicionario | dict2items }}"
+```

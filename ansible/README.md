@@ -45,7 +45,7 @@ interpreter_python=auto_legacy_silent
 
 ## Definindo um arquivo de Inventário.
 
-/etc/ansible/hosts.cfg
+hosts.cfg
 
 ```
 [webserver]
