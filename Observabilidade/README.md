@@ -6,14 +6,20 @@
 - Opensearch
 - Grafana Loki
 
+## Coletores de Logs
+
+- Fluent-bit
+- Promtail
+
 ## Visualização de Logs
 
 - Graylog
 - Kibana
 - Grafana
 
-## Coletores de Logs
+## Tracing
 
-- Filebeat
-- Promtail
+- Zipkin
+- Jaeger
+- Grafana Tempo
 
