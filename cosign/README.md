@@ -18,25 +18,26 @@ sudo chmod +x /usr/local/bin/cosign
 ```
 
 ## Criar par de chaves
-
+```
 cosign generate-key-pair
-
+```
+```
 cosign.key
 cosign.pub
-
+```
 ## Fazer o build e Push de uma Imagem
-
+```
 docker build -t julianorib/imagemteste:v1.0 .
 docker push julianorib/imagemteste:v1.0
-
+```
 ## Assinar
-
+```
 cosign sign -key cosign.key julianorib/imagemteste:v1.0
-
+```
 ## Validar assinatura
-
+```
 cosign verify --key cosign.pub julianorib/imagemteste:v1.0
-
+```
 
 ## Kubernetes 
 
