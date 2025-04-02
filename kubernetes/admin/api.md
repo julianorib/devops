@@ -49,7 +49,6 @@ curl https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}/api/ -k -H "A
 
 :OU:
 
-```
 Caminho do Token: /var/run/secrets/kubernetes.io/serviceaccount/token
 ```
 TOKEN=$(cat token)
