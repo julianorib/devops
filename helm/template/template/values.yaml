@@ -7,7 +7,7 @@ replicas: 1
 # Informe os dados dos PODs:
 containers:
   front: 
-    imagem: registry.v2.unicoob.local/app:v1.0
+    imagem: registry.domain.com.br/app:v1.0
     resources:
       memory: 100Mi
       cpu: 0.5
@@ -41,7 +41,7 @@ autoscaling:
 ingress:
   host: #seudns
   path: /sistema
-  tls: unicoob-secret
+  tls: sua-secret
 
 # Definir as variaveis. 
 # Pode colocar chave valor uma embaixo da outra.
